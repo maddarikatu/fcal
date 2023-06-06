@@ -1,11 +1,15 @@
 #define UNIX	"11 Nivôse CLXXVIII"
 #define UNIX_LEAP	259
+#define UNIX_LEAP_ANNE	159
 #define SECINJ	86400
 
 struct Date {
-	int fr_anne, fr_moin, fr_decade,
-		fr_ajour, fr_mjour,
-		fr_heur, fr_min, fr_sec;
+	int fr_anne,
+		fr_moin,
+		fr_decade,
+		fr_ajour,
+		fr_mjour,
+		fr_biss;
 	char rom[32];
 };
 

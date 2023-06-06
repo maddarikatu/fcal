@@ -6,34 +6,32 @@
 #include "config.h"
 #include "jours.h"
 
-void trov_jour(int sec, struct Date *date) {
-	int seulj = sec / SECINJ;
-	date->fr_anne = seulj / (365.25 * SECINJ) + 1;
-	seulj %= (int)365.25 * SECINJ;
-	date->fr_moin = seulj / (30 * SECINJ);
-	date->fr_ajour = seulj / SECINJ;
-	date->fr_decade = date->fr_ajour / 10;
-	seulj %= 30 * SECINJ;
-	date->fr_mjour = seulj / SECINJ;
+struct Date *faire_date(int sec) {
+	struct Date *new = malloc(sizeof(struct Date));
 
-	araro(date->fr_anne, date->rom);
-}
+	int jou = sec / SECINJ;
+	jou += UNIX_LEAP;
 
-void trov_heur(int sec, struct Date *date) {
-	int seulh = sec % SECINJ;
-	date->fr_sec = seulh % 60;
-	seulh /= 60;
-	date->fr_min = seulh % 60;
-	seulh /= 60;
-	date->fr_heur = seulh;
+	new->fr_anne = jou / 365.25 + UNIX_LEAP_ANNE + 1;
+	if (new->fr_anne % 4) {
+		if (!(new->fr_anne % 100)) {
+			if (new->fr_anne % 400) {
+				new->fr_biss = 1;
+			} else {
+				new->fr_biss = 0;
+			}
+		} else {
+			new->fr_biss = 1;
+		}
+	}
+
+	return new;
 }
 
 int main(void) {
 	time_t t = time(NULL);
 
-	struct Date *d = malloc(sizeof(struct Date));
-	trov_jour((int)t, d);
-	trov_heur((int)t, d);
+	struct Date *d = faire_date(t);
 
 	printf("%s\n", d->rom);
 }
