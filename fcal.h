@@ -1,7 +1,7 @@
 #ifndef FCAL_H_
 #define FCAL_H_
 
-#define __FCAL_VERSION "0.1.1"
+#define __FCAL_VERSION "0.1-1"
 
 typedef struct {
 	int opt_week_numbers,
