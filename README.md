@@ -23,6 +23,6 @@ gcc -Wall -Wextra -pedantic -O3 -o fcal fcal.c araro.c opts.c
 **NOTES**
 
 * In the case of `-Ss` or `-sS` the second option overrides the first.
-* Printing the stirng works best when no other argument is provided.
+* Printing the string works best when no other argument is provided.
 * All printed text is only in french (not a bug) (working on multilanguage)
 * Currently, not providing `[day]` or `[month]` results on the program calculating as if 1 was passed in each case (TODO).
