@@ -61,9 +61,8 @@ main(int argc, char **argv)
 	int j = 0;
 	if (args.opt_curr) {
 		time_t t = time(NULL);
-		struct tm tm;
-		localtime_r(&t, &tm);
-		long tfr = t - 1600646400L + tm.tm_gmtoff;
+		struct tm *tm = localtime(&t);
+		long tfr = t - 1600646400L + tm->tm_gmtoff;
 		j = tfr / 86400;
 	} else {
 		j = args_a_jours(&args);
@@ -74,7 +73,16 @@ main(int argc, char **argv)
 		montrer_date(&d);
 		return 0;
 	}
-	fr_cal(&d);
+	if (args.opt_years) {
+		printf("\033[1m         %d\033[0m\n", d.fr_anne);
+		for (int i = 0; i < 13; i++) {
+			d.fr_moin = i;
+			fr_cal(&d, &args);
+		}
+	} else {
+		fr_cal(&d, &args);
+	}
+
 	if (args.opt_string == 1)
 		montrer_date(&d);
 
