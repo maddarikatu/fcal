@@ -52,18 +52,21 @@ fcal_opts(int argc, char **argv)
 
   switch (argc - o) {
     case 3: {
-      args.d = atoi(argv[o]) - 1;
-      args.m = atoi(argv[o+1]) - 1;
-      args.d = atoi(argv[o+2]) - 1;
+      args.d = atoi(argv[o]);
+      args.m = atoi(argv[o+1]);
+      args.y = atoi(argv[o+2]);
       args.opt_curr = 0;
     } break;
     case 2: {
-      args.m = atoi(argv[o]) - 1;
-      args.y = atoi(argv[o+1]) - 1;
+	  args.d = 1;
+      args.m = atoi(argv[o]);
+      args.y = atoi(argv[o+1]);
       args.opt_curr = 0;
     } break;
     case 1: {
-      args.y = atoi(argv[o]) - 1;
+	  args.d = 1;
+	  args.m = 1;
+      args.y = atoi(argv[o]);
       args.opt_curr = 0;
     } break;
     case 0:

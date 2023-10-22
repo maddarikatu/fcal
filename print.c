@@ -29,7 +29,7 @@ montrer_date(date_t *d)
 void
 fr_cal(date_t *d)
 {
-	printf("\033[1mMoin %s (%s)\033[0m\n", moins[d->fr_moin], ssss[d->fr_moin / 3]);
+	printf("\033[1mMoin %s (%s) anné %d\033[0m\n", moins[d->fr_moin], ssss[d->fr_moin / 3], d->fr_anne);
 	printf("        | ");
 	for (int i = 0; i < 10; i++) printf(" %s ", jour_code[i]);
 	putchar('\n');

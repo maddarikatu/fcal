@@ -5,7 +5,6 @@
 
 #include "fcal.h"
 #include "config.h"
-#include "jours.h"
 
 static int
 l_aberration_pour_calculer_les_bissextiles(int j)
@@ -42,7 +41,7 @@ ger_a_rev(int j)
 int
 args_a_jours(args_t *args)
 {
-	return (long)(args->y * 365.24225 - 228 + args->m + 30 + args->d);
+	return (long)((args->y - 228) * 365.24225 + (args->m - 1) * 30 + args->d);
 }
 
 int
