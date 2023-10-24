@@ -10,7 +10,7 @@ static int
 l_aberration_pour_calculer_les_bissextiles(int j)
 {
 	// Unironically the same as remainder of 365.24225 but not sure if that messes up some dates :/
-	int n = (j % 36524) % 1461;
+	int n = ((j % 146097) % 36524) % 1461;
 	
 	for (int i = 0; i < 3; i++)
 	{
@@ -26,14 +26,15 @@ ger_a_rev(int j)
 {
 	date_t d = {0};
 	d.fr_anne = 228 + (j / 365.24225);
-	d.fr_biss = biss_bool(d.fr_anne + 1);
+	d.fr_biss = biss_bool(d.fr_anne);
 	d.fr_ajour = l_aberration_pour_calculer_les_bissextiles(j) - 1;
+	// if (!d.fr_biss) d.fr_ajour--;
 	d.fr_decade = d.fr_ajour / 10;
 	d.fr_moin = d.fr_ajour / 30;
 	d.fr_mjour = d.fr_ajour % 30;
 	d.fr_djour = d.fr_ajour % 10;
 
-	araro(d.fr_anne + 1, d.rom);
+	araro(d.fr_anne, d.rom);
 
 	return d;
 }
@@ -47,6 +48,7 @@ args_a_jours(args_t *args)
 int
 main(int argc, char **argv)
 {
+	// TODO: fix 5 and 6 of supplementary days
 	args_t args = fcal_opts(argc, argv);
 	if (args.opt_help) {
 		print_help(argv[0]);
@@ -75,12 +77,13 @@ main(int argc, char **argv)
 	}
 	if (args.opt_years) {
 		printf("\033[1m         %d\033[0m\n", d.fr_anne);
+		int d_fr_moin = d.fr_moin;
 		for (int i = 0; i < 13; i++) {
 			d.fr_moin = i;
-			fr_cal(&d, &args);
+			fr_cal(&d, &args, (args.opt_show_day && d_fr_moin == i));
 		}
 	} else {
-		fr_cal(&d, &args);
+		fr_cal(&d, &args, args.opt_show_day);
 	}
 
 	if (args.opt_string == 1)

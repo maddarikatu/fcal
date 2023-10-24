@@ -1,7 +1,7 @@
 #ifndef FCAL_H_
 #define FCAL_H_
 
-#define __FCAL_VERSION "0.2"
+#define __FCAL_VERSION "0.3"
 
 typedef struct {
 	int opt_week_numbers,
@@ -49,6 +49,6 @@ void print_help(char *argv0);
 // Print day string to stdout
 void montrer_date(date_t *d);
 // Print month calendar
-void fr_cal(date_t *d, args_t *args);
+void fr_cal(date_t *d, args_t *args, int show_day);
 
 #endif // FCAL_H_

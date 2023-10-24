@@ -8,13 +8,6 @@ fcal_opts(int argc, char **argv)
 {
 	args_t args = {0};
 
-	if (argc == 1) {
-		args.opt_curr = 1;
-		args.opt_show_day = 0;
-
-		return args;
-	}
-
 	// TODO: parser allows flags after date (int[3] -> int[n++] ?)
 	int o;
 	for (o = 1; argv[o] != NULL && argv[o][0] == '-'; o++) {
@@ -54,7 +47,9 @@ fcal_opts(int argc, char **argv)
 	if (argc > o) {
 		args.opt_curr = 0;
 	} else {
+		args.opt_show_day = 1;
 		args.opt_curr = 1;
+
 		return args;
 	}
 
@@ -63,7 +58,10 @@ fcal_opts(int argc, char **argv)
 		exit(1);
 	}
 
-	if (argc - o >= 1) args.y = atoi(argv[argc-1]);
+	if (argc - o >= 1) {
+		args.y = atoi(argv[argc-1]);
+		if (argc - o == 1) args.opt_years = 1;
+	}
 	if (argc - o >= 2) args.m = atoi(argv[argc-2]); else args.m = 1;
 	if (argc - o == 3) {
 		args.d = atoi(argv[argc-3]);
