@@ -4,13 +4,13 @@
 
 void
 print_help(char *argv0) {
-	printf("Usage: %s -[hsSvy] [[[day] month] year]\n", argv0);
-	printf("\t-h:\tprint this help message.\n");
-	printf("\t-s:\tprint date string (after calendar).\n");
-	printf("\t-S:\tprint date string (only).\n");
-	printf("\t-v:\tprint version.\n\n");
-	printf("\t-w:\tprint week numbers.\n");
-	printf("\t-y:\tprint the whole year.\n");
+	printf("Usage: %s -[hsSvy] [[[day] month] year]\n"
+      "\t-h:\tprint this help message.\n"
+      "\t-s:\tprint date string (after calendar).\n"
+      "\t-S:\tprint date string (only).\n"
+      "\t-v:\tprint version.\n\n"
+      "\t-w:\tprint week numbers.\n"
+      "\t-y:\tprint the whole year.\n", argv0);
 }
 
 void
@@ -18,12 +18,19 @@ montrer_date(date_t *d)
 {
 	if (d->fr_moin == 12)
 		// fetes
-		printf("Aujourd'hui, nous sommes le %s %d de les jours suplementaires, de l'anné %s du calendrier républicain, fête %s\n",
-				jour_decade_fr[d->fr_djour], d->fr_mjour + 1, d->rom, nomjour_fr[d->fr_ajour]);
+		printf("Aujourd'hui, nous sommes le %s %d "
+        "de les jours suplementaires, de l'anné "
+        "%s du calendrier républicain, fête %s\n",
+				jour_decade_fr[d->fr_djour], d->fr_mjour + 1,
+        d->rom, nomjour_fr[d->fr_ajour]);
 	else
 		// non fetes
-		printf("Aujourd'hui, nous sommes le %s %d %s, de l'anné %s du calendrier républicain, jour du/de la %s\n",
-				jour_decade_fr[d->fr_djour], d->fr_mjour + 1, moins_fr[d->fr_moin], d->rom, nomjour_fr[d->fr_ajour]);
+		printf("Aujourd'hui, nous sommes le %s %d %s, "
+        "de l'anné %s du calendrier républicain, "
+        "jour du/de la %s\n",
+				jour_decade_fr[d->fr_djour], d->fr_mjour + 1, moins_fr[d->fr_moin],
+        d->rom,
+        nomjour_fr[d->fr_ajour]);
 }
 
 void

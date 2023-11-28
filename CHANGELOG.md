@@ -18,3 +18,7 @@
 * found new bug where `-y` with specific only `[year]` gets the previous year (maybe related to supp. days thing).
 * Added [Makefile](Makefile).
 * Started adaptation for multilanguage.
+
+## 0.4.1
+* Fixed year when using current date (previously displayed one year less).
+* Provided date now has its own way of filling [`date_t`](src/fcal.h#L18), instead of being converted to seconds since epoch (therefore supporting dates before 1 vendémiaire 228)

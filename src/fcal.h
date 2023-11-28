@@ -11,7 +11,7 @@ typedef struct {
 	    opt_help,
 	    opt_ver,
 	    opt_curr,
-		opt_show_day;
+      opt_show_day;
 	int d, m, y;
 } args_t;
 

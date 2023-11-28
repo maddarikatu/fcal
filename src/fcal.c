@@ -39,6 +39,23 @@ ger_a_rev(int j)
 	return d;
 }
 
+date_t
+args_a_rev(args_t *args)
+{
+  date_t d = {0};
+
+  d.fr_anne = args->y;
+  d.fr_biss = biss_bool(args->y);
+  d.fr_moin = args->m - 1;
+  d.fr_mjour = args->d - 1;
+  d.fr_ajour = (d.fr_moin + 1) * 30 + d.fr_mjour + 1;
+  d.fr_djour = d.fr_mjour % 10;
+
+  araro(d.fr_anne, d.rom);
+
+  return d;
+}
+
 int
 args_a_jours(args_t *args)
 {
@@ -60,17 +77,15 @@ main(int argc, char **argv)
 		return 0;
 	}
 
-	int j = 0;
+  date_t d;
 	if (args.opt_curr) {
 		time_t t = time(NULL);
 		struct tm *tm = localtime(&t);
-		long tfr = t - 1600646400L + tmoff(tm);
-		j = tfr / 86400;
+		long tfr = t - 1569025800L + tmoff(tm);
+	  d = ger_a_rev(tfr / 86400);
 	} else {
-		j = args_a_jours(&args);
+    d = args_a_rev(&args);
 	}
-
-	date_t d = ger_a_rev(j);
 
 	if (args.opt_string == 2) {
 		montrer_date(&d);
