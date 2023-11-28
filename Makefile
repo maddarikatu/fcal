@@ -3,7 +3,7 @@ NAME=fcal
 .SUFFIXES:
 .SUFFISEX: .c .o
 
-CC=clang
+CC=cc
 CFLAGS=-Wall -Wextra -O3 -pedantic
 SRC_DIR=src
 OBJ_DIR=out

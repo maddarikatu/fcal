@@ -1,8 +1,10 @@
 # FCAL
 
-French Republican Calendar on the terminal
+French Republican Calendar on the terminal.
 
 ## Installation
+
+Installation tried on GNU/Linux and Windows using MSYS2
 
 ```bash
 make
@@ -14,7 +16,7 @@ make
 * `-s` prints date string (after calendar)
 * `-S` prints date string (only)
 * `-v` prints version
-* `-y` prints whole year **(unimplemented)**
+* `-y` prints whole year
 
 * `[day]` specific day (needs `[month]` and `[year]`)
 * `[month]` specific month (month number 1-13, month name or abbreviation; needs `[year]`)
