@@ -4,7 +4,7 @@ French Republican Calendar on the terminal.
 
 ## Installation
 
-Installation tried on GNU/Linux and Windows using MSYS2
+Installation tested on GNU/Linux and Windows using MSYS2
 
 ```bash
 make
