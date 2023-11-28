@@ -23,3 +23,4 @@
 * Fixed year when using current date (previously displayed one year less).
 * Provided date now has its own way of filling [`date_t`](src/fcal.h#L18), instead of being converted to seconds since epoch (therefore supporting dates before 1 vendémiaire 228)
 * Tested on Windows after adding [`tmoff.c`](src/tmoff.c)
+* Realised localisation in Windows is messed up. Looking into it.

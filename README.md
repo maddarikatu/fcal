@@ -27,3 +27,4 @@ make
 * In the case of `-Ss` or `-sS` the second option overrides the first.
 * Printing the string works best when no other argument is provided.
 * All printed text is only in french (not a bug) (working on multilanguage)
+* Localisation is not made for Windows (accented words look fancy)
