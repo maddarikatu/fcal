@@ -13,3 +13,8 @@
 * fixed bug where month year wasn't highlighted when showing current date
 * string on supplementary days now shows year
 * found new bug !! (5th and 6th supplementary days overflow)
+
+## 0.4
+* found new bug where `-y` with specific only `[year]` gets the previous year (maybe related to supp. days thing).
+* Added [Makefile](Makefile).
+* Started adaptation for multilanguage.

@@ -1,5 +1,7 @@
+#include "fcal.h"
+
 // TODO: Add prepositions and articles to names
-const char nomjour[366][33] = {
+char *nomjour_fr[366] = {
 	"raisin",
 	"safran",
 	"châtaigne",
@@ -368,7 +370,7 @@ const char nomjour[366][33] = {
 	"de la révolution"
 };
 
-const char jour_decade[10][9] = {
+char *jour_decade_fr[10] = {
 	"primidi",
 	"duodi",
 	"tridi",
@@ -381,7 +383,7 @@ const char jour_decade[10][9] = {
 	"décadi"
 };
 
-const char jour_code[10][3] = {
+char *jour_code_fr[10] = {
 	"PR",
 	"DU",
 	"TR",
@@ -394,14 +396,14 @@ const char jour_code[10][3] = {
 	"DE"
 };
 
-const char ssss[4][13] = {
+char *saison_fr[4] = {
 	"d'automne",
 	"du'hivern",
 	"de printemps",
 	"d'été"
 };
 
-const char moins[12][13] = {
+char *moins_fr[12] = {
 	"vendémiaire",
 	"brumaire",
 	"frimaire",

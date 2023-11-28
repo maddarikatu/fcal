@@ -25,7 +25,7 @@ date_t
 ger_a_rev(int j)
 {
 	date_t d = {0};
-	d.fr_anne = 228 + (j / 365.24225);
+	d.fr_anne = MIN_YEAR + (j / 365.24225);
 	d.fr_biss = biss_bool(d.fr_anne);
 	d.fr_ajour = l_aberration_pour_calculer_les_bissextiles(j) - 1;
 	// if (!d.fr_biss) d.fr_ajour--;
@@ -42,7 +42,7 @@ ger_a_rev(int j)
 int
 args_a_jours(args_t *args)
 {
-	return (long)((args->y - 228) * 365.24225 + (args->m - 1) * 30 + args->d);
+	return (long)((args->y - MIN_YEAR) * 365.24225 + (args->m - 1) * 30 + args->d);
 }
 
 int
@@ -64,13 +64,14 @@ main(int argc, char **argv)
 	if (args.opt_curr) {
 		time_t t = time(NULL);
 		struct tm *tm = localtime(&t);
-		long tfr = t - 1600646400L + tm->tm_gmtoff;
+		long tfr = t - 1600646400L + tmoff(tm);
 		j = tfr / 86400;
 	} else {
 		j = args_a_jours(&args);
 	}
 
 	date_t d = ger_a_rev(j);
+
 	if (args.opt_string == 2) {
 		montrer_date(&d);
 		return 0;

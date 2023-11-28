@@ -71,7 +71,7 @@ fcal_opts(int argc, char **argv)
 		args.opt_show_day = 0;
 	}
 
-	if (!args.opt_curr && args.y < 228) {
+	if (!args.opt_curr && args.y < MIN_YEAR) {
 		fprintf(stderr, "Currently not supporting dates before year 228 (gregorian 2020)\n");
 		exit(1);
 	}

@@ -1,7 +1,6 @@
 #include <stdio.h>
 
 #include "fcal.h"
-#include "jours.h"
 
 void
 print_help(char *argv0) {
@@ -20,11 +19,11 @@ montrer_date(date_t *d)
 	if (d->fr_moin == 12)
 		// fetes
 		printf("Aujourd'hui, nous sommes le %s %d de les jours suplementaires, de l'anné %s du calendrier républicain, fête %s\n",
-				jour_decade[d->fr_djour], d->fr_mjour + 1, d->rom, nomjour[d->fr_ajour]);
+				jour_decade_fr[d->fr_djour], d->fr_mjour + 1, d->rom, nomjour_fr[d->fr_ajour]);
 	else
 		// non fetes
 		printf("Aujourd'hui, nous sommes le %s %d %s, de l'anné %s du calendrier républicain, jour du/de la %s\n",
-				jour_decade[d->fr_djour], d->fr_mjour + 1, moins[d->fr_moin], d->rom, nomjour[d->fr_ajour]);
+				jour_decade_fr[d->fr_djour], d->fr_mjour + 1, moins_fr[d->fr_moin], d->rom, nomjour_fr[d->fr_ajour]);
 }
 
 void
@@ -36,7 +35,7 @@ __fr_cal_fetes(date_t *d, args_t *args, int show_day)
 		printf("\033[1m         jours supplémentaires, anné %d\033[0m\n", d->fr_anne);
 	}
 	if (args->opt_week_numbers) printf("        | ");
-	for (int i = 0; i < 10; i++) printf(" %s ", jour_code[i]);
+	for (int i = 0; i < 10; i++) printf(" %s ", jour_code_fr[i]);
 	putchar('\n');
 
 	if (args->opt_week_numbers) printf("Dec. 37 | ");
@@ -57,12 +56,12 @@ fr_cal(date_t *d, args_t *args, int show_day)
 		return;
 	}
 	if (args->opt_years) {
-		printf("\033[1m         %s\033[0m\n", moins[d->fr_moin]);
+		printf("\033[1m         %s\033[0m\n", moins_fr[d->fr_moin]);
 	} else {
-		printf("\033[1m         %s, anné %d\033[0m\n", moins[d->fr_moin], d->fr_anne);
+		printf("\033[1m         %s, anné %d\033[0m\n", moins_fr[d->fr_moin], d->fr_anne);
 	}
 	if (args->opt_week_numbers) printf("        | ");
-	for (int i = 0; i < 10; i++) printf(" %s ", jour_code[i]);
+	for (int i = 0; i < 10; i++) printf(" %s ", jour_code_fr[i]);
 	putchar('\n');
 
 	for (int i = 0; i < 3; i++) {
