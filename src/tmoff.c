@@ -2,20 +2,20 @@
 
 #include "fcal.h"
 
-int
+  int
 tmoff(struct tm *ltm)
 {
-    int offset;
+  int offset;
 #ifdef __GNU_LIBRARY__
-    offset = ltm->tm_gmtoff;
+  offset = ltm->tm_gmtoff;
 #else
-    time_t lt;
-    struct tm *gmt;
+  time_t lt;
+  struct tm *gmt;
 
-    lt = time(NULL);
-    gmt = gmtime(&lt);
+  lt = time(NULL);
+  gmt = gmtime(&lt);
 
-    offset = difftime(mktime(ltm), mktime(gmt));
+  offset = difftime(mktime(ltm), mktime(gmt));
 #endif
-    return offset;
+  return offset;
 }

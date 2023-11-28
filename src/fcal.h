@@ -5,19 +5,19 @@
 #include <time.h>
 
 typedef struct {
-	int opt_week_numbers,
-	    opt_string,
-	    opt_years,
-	    opt_help,
-	    opt_ver,
-	    opt_curr,
+  int opt_week_numbers,
+      opt_string,
+      opt_years,
+      opt_help,
+      opt_ver,
+      opt_curr,
       opt_show_day;
-	int d, m, y;
+  int d, m, y;
 } args_t;
 
 typedef struct {
-        int fr_anne, fr_moin, fr_decade, fr_ajour, fr_mjour, fr_djour, fr_biss;
-        char rom[32];
+  int fr_anne, fr_moin, fr_decade, fr_ajour, fr_mjour, fr_djour, fr_biss;
+  char rom[32];
 } date_t;
 
 // jours.c

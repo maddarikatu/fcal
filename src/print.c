@@ -4,7 +4,7 @@
 
 void
 print_help(char *argv0) {
-	printf("Usage: %s -[hsSvy] [[[day] month] year]\n"
+  printf("Usage: %s -[hsSvy] [[[day] month] year]\n"
       "\t-h:\tprint this help message.\n"
       "\t-s:\tprint date string (after calendar).\n"
       "\t-S:\tprint date string (only).\n"
