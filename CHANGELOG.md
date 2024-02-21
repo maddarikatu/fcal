@@ -31,3 +31,6 @@
 ## 0.5.1
 * Re-work of the option table for arguments.
 * Cases in `fcal_long_opts` switch-statement now check that the long option is actually correct.
+
+## 0.5.2
+* Added `setlocale` to try to fix Windows Terminal locale (unsuccesfully).

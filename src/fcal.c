@@ -2,11 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <locale.h>
 
 #include "fcal.h"
 #include "config.h"
 
-  static int
+static int
 l_aberration_pour_calculer_les_bissextiles(int j)
 {
   // Unironically the same as remainder of 365.24225 but not sure if that messes up some dates :/
@@ -65,6 +66,7 @@ args_a_jours(args_t *args)
   int
 main(int argc, char **argv)
 {
+  setlocale(LC_ALL, "fr_FR-UTF.8");
   // TODO: fix 5 and 6 of supplementary days
   args_t args = fcal_opts(argc, argv);
   if (fcal_test_opt(&args, FCAL_OPT_HELP)) {

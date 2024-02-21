@@ -1,4 +1,4 @@
-#define __FCAL_VERSION "0.4.2"
+#define __FCAL_VERSION "0.5.2"
 
 #define MIN_YEAR 228
 
