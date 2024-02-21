@@ -8,15 +8,15 @@ Installation tested on GNU/Linux and Windows using MSYS2
 
 ```bash
 make
-./fcal -[hsSvy] [[[day] month] year]
+./fcal [opts] [[[day] month] year]
 ```
 
 ### Options
-* `-h` prints help message,
-* `-s` prints date string (after calendar)
-* `-S` prints date string (only)
-* `-v` prints version
-* `-y` prints whole year
+* `-h`, `--help` prints help message,
+* `-s`, `--string` prints date string (after calendar)
+* `-S`, `--onlystring` prints date string (only)
+* `-v`, `--version` prints version
+* `-y`, `--year` prints whole year
 
 * `[day]` specific day (needs `[month]` and `[year]`)
 * `[month]` specific month (month number 1-13, month name or abbreviation; needs `[year]`)

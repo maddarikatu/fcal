@@ -4,13 +4,15 @@
 
 void
 print_help(char *argv0) {
-  printf("Usage: %s -[hsSvy] [[[day] month] year]\n"
-      "\t-h:\tprint this help message.\n"
-      "\t-s:\tprint date string (after calendar).\n"
-      "\t-S:\tprint date string (only).\n"
-      "\t-v:\tprint version.\n\n"
-      "\t-w:\tprint week numbers.\n"
-      "\t-y:\tprint the whole year.\n", argv0);
+  printf("Usage: %s [opt] [[[day] month] year]\n\n"
+      "\tOptions:\n"
+      "\t-h, --help:        print this help message.\n"
+      "\t-v, --version:     print version.\n\n"
+      "\t-s, --string:      print date string (after calendar).\n"
+      "\t-S, --onlystring:  print date string (only).\n"
+      "\t-w, --week:        print week numbers.\n"
+      "\t-y, --year:        print the whole year.\n",
+      argv0);
 }
 
 void

@@ -1,9 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "fcal.h"
 
-  args_t
+//       help (h): -7
+//    version (v): -21
+// onlystring (s): -14
+//     string (S): -18
+//      weeks (w): -22
+//       year (y): -24
+//      years (y): -24
+
+void
+fcal_opts_long(char *opt, args_t *args)
+{
+  switch (strcmp("abcdefghij", opt)) {
+    case -7:
+      args->opt_help = 1;
+      break;
+    case -21:
+      args->opt_ver = 1;
+      break;
+    case -14:
+      args->opt_string = 1;
+      break;
+    case -18:
+      args->opt_string = 2;
+      break;
+    case -22:
+      args->opt_week_numbers = 1;
+      break;
+    case -24:
+      args->opt_years = 1;
+      break;
+    case '-':
+
+    default:
+      fprintf(stderr, "Unknown option: '%s'.\n", opt);
+      exit(1);
+  }
+}
+
+args_t
 fcal_opts(int argc, char **argv)
 {
   args_t args = {0};
@@ -11,8 +50,9 @@ fcal_opts(int argc, char **argv)
   // TODO: parser allows flags after date (int[3] -> int[n++] ?)
   int o;
   for (o = 1; argv[o] != NULL && argv[o][0] == '-'; o++) {
+    int after_longopt = 0;
     int i = 1;
-    while (argv[o][i]) {
+    while (argv[o][i] && !after_longopt) {
       switch (argv[o][i]) {
         case 'h':
           args.opt_help = 1;
@@ -31,6 +71,10 @@ fcal_opts(int argc, char **argv)
           break;
         case 'y':
           args.opt_years = 1;
+          break;
+        case '-':
+          fcal_opts_long(&argv[o][i+1], &args);
+          after_longopt = 1;
           break;
         default:
           fprintf(stderr, "Unknown option: '%c'.\n", argv[o][i]);
