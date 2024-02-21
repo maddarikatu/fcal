@@ -3,7 +3,24 @@
 #include "fcal.h"
 
 void
+__win_print_help(char *argv0)
+{
+  printf("Usage: %s -[hvsSwy] [[[day] month] year]\n\n"
+      "\tOptions:\n"
+      "\t-h: print this help message.\n"
+      "\t-v: print version.\n\n"
+      "\t-s: print date string (after calendar).\n"
+      "\t-S: print date string (only).\n"
+      "\t-w: print week numbers.\n"
+      "\t-y: print the whole year.\n",
+      argv0);
+}
+
+void
 print_help(char *argv0) {
+#ifdef WIN32
+  __win_print_help(argv0);
+#else
   printf("Usage: %s [opt] [[[day] month] year]\n\n"
       "\tOptions:\n"
       "\t-h, --help:        print this help message.\n"
@@ -13,6 +30,7 @@ print_help(char *argv0) {
       "\t-w, --week:        print week numbers.\n"
       "\t-y, --year:        print the whole year.\n",
       argv0);
+#endif
 }
 
 void

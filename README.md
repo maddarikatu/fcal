@@ -20,7 +20,7 @@ make
 
 * `[day]` specific day (needs `[month]` and `[year]`)
 * `[month]` specific month (month number 1-13, month name or abbreviation; needs `[year]`)
-* `[year]` specific year (228-...; currently not supporting dates before 01-01-2028 or gregorian sept. 22, 2020)
+* `[year]` specific year
 
 **NOTES**
 
@@ -28,3 +28,4 @@ make
 * Printing the string works best when no other argument is provided.
 * All printed text is only in french (not a bug) (working on multilanguage)
 * Localisation is not made for Windows (accented words look fancy)
+* Long options do not work on Windows.

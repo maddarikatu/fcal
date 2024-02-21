@@ -44,6 +44,12 @@ opt_unknown(char *opt)
 void
 fcal_opts_long(char *opt, args_t *args)
 {
+#ifdef WIN32
+  (void)opt;
+  (void)args;
+  fprintf(stderr, "Long options are not supported on Windows.\n");
+  exit(1);
+#else
   switch (strcmp("abcdefghij", opt)) {
     case -7:
       if (strcmp(opt, "help") == 0) fcal_set_opt(args, FCAL_OPT_HELP); else opt_unknown(opt);
@@ -76,6 +82,7 @@ fcal_opts_long(char *opt, args_t *args)
     default:
       opt_unknown(opt);
   }
+#endif
 }
 
 args_t

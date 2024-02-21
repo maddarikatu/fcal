@@ -34,3 +34,7 @@
 
 ## 0.5.2
 * Added `setlocale` to try to fix Windows Terminal locale (unsuccesfully).
+
+## 0.5.3
+* `--help` now redirects to a different function on Windows builds as long options do not work.
+* Windows builds do not include support for long opts.
