@@ -9,10 +9,10 @@
 #define FCAL_OPT_HELP   (char)(1 << 1)
 #define FCAL_OPT_WEEK   (char)(1 << 2)
 #define FCAL_OPT_STRC   (char)(1 << 3)
-#define FCAL_OPT_STRO   (char)(1 << 3)
-#define FCAL_OPT_YEAR   (char)(1 << 4)
-#define FCAL_OPT_CURR   (char)(1 << 5)
-#define FCAL_OPT_HDAY   (char)(1 << 6)
+#define FCAL_OPT_STRO   (char)(1 << 4)
+#define FCAL_OPT_YEAR   (char)(1 << 5)
+#define FCAL_OPT_CURR   (char)(1 << 6)
+#define FCAL_OPT_HDAY   (char)(1 << 7)
 
 typedef struct {
   int opts;

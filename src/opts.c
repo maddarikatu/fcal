@@ -59,16 +59,16 @@ fcal_opts_long(char *opt, args_t *args)
       break;
     case -14:
       if (strcmp(opt, "onlystring") == 0) {
-        fcal_set_opt(args, FCAL_OPT_STRC);
-        fcal_unset_opt(args, FCAL_OPT_STRO);
+        fcal_set_opt(args, FCAL_OPT_STRO);
+        fcal_unset_opt(args, FCAL_OPT_STRC);
       } else {
         opt_unknown(opt);
       }
       break;
     case -18:
       if (strcmp(opt, "string") == 0) {
-        fcal_set_opt(args, FCAL_OPT_STRO);
-        fcal_unset_opt(args, FCAL_OPT_STRC);
+        fcal_set_opt(args, FCAL_OPT_STRC);
+        fcal_unset_opt(args, FCAL_OPT_STRO);
       } else {
         opt_unknown(opt);
       }
