@@ -4,14 +4,18 @@
 
 #include <time.h>
 
+// ARGS
+#define FCAL_OPT_VERS   (char)(1 << 0)
+#define FCAL_OPT_HELP   (char)(1 << 1)
+#define FCAL_OPT_WEEK   (char)(1 << 2)
+#define FCAL_OPT_STRC   (char)(1 << 3)
+#define FCAL_OPT_STRO   (char)(1 << 3)
+#define FCAL_OPT_YEAR   (char)(1 << 4)
+#define FCAL_OPT_CURR   (char)(1 << 5)
+#define FCAL_OPT_HDAY   (char)(1 << 6)
+
 typedef struct {
-  int opt_week_numbers,
-      opt_string,
-      opt_years,
-      opt_help,
-      opt_ver,
-      opt_curr,
-      opt_show_day;
+  int opts;
   int d, m, y;
 } args_t;
 
@@ -37,6 +41,9 @@ char *araro(int n, char *dest);
 /* In opts.c */
 // Argument parser
 // Returns args_t table
+int fcal_set_opt(args_t *args, char option);
+int fcal_unset_opt(args_t *args, char option);
+int fcal_test_opt(args_t *args, char option);
 args_t fcal_opts(int argc, char **argv);
 
 /* In fcal.c */

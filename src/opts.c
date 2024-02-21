@@ -4,6 +4,28 @@
 
 #include "fcal.h"
 
+int
+fcal_set_opt(args_t *args, char option)
+{
+  args->opts |= option;
+
+  return args->opts;
+}
+
+int
+fcal_unset_opt(args_t *args, char option)
+{
+  args->opts &= ~option;
+
+  return args->opts;
+}
+
+int
+fcal_test_opt(args_t *args, char option)
+{
+  return (args->opts & option);
+}
+
 //       help (h): -7
 //    version (v): -21
 // onlystring (s): -14
@@ -12,33 +34,47 @@
 //       year (y): -24
 //      years (y): -24
 
+static inline void
+opt_unknown(char *opt)
+{
+  fprintf(stderr, "Unknown option: '%s'.\n", opt);
+  exit(1);
+}
+
 void
 fcal_opts_long(char *opt, args_t *args)
 {
   switch (strcmp("abcdefghij", opt)) {
     case -7:
-      args->opt_help = 1;
+      if (strcmp(opt, "help") == 0) fcal_set_opt(args, FCAL_OPT_HELP); else opt_unknown(opt);
       break;
     case -21:
-      args->opt_ver = 1;
+      if (strcmp(opt, "version") == 0) fcal_set_opt(args, FCAL_OPT_VERS); else opt_unknown(opt);
       break;
     case -14:
-      args->opt_string = 1;
+      if (strcmp(opt, "onlystring") == 0) {
+        fcal_set_opt(args, FCAL_OPT_STRC);
+        fcal_unset_opt(args, FCAL_OPT_STRO);
+      } else {
+        opt_unknown(opt);
+      }
       break;
     case -18:
-      args->opt_string = 2;
+      if (strcmp(opt, "string") == 0) {
+        fcal_set_opt(args, FCAL_OPT_STRO);
+        fcal_unset_opt(args, FCAL_OPT_STRC);
+      } else {
+        opt_unknown(opt);
+      }
       break;
     case -22:
-      args->opt_week_numbers = 1;
+      if (strcmp(opt, "weeks") == 0) fcal_set_opt(args, FCAL_OPT_WEEK); else opt_unknown(opt);
       break;
     case -24:
-      args->opt_years = 1;
+      if (strcmp(opt, "year") == 0) fcal_set_opt(args, FCAL_OPT_YEAR); else opt_unknown(opt);
       break;
-    case '-':
-
     default:
-      fprintf(stderr, "Unknown option: '%s'.\n", opt);
-      exit(1);
+      opt_unknown(opt);
   }
 }
 
@@ -55,22 +91,24 @@ fcal_opts(int argc, char **argv)
     while (argv[o][i] && !after_longopt) {
       switch (argv[o][i]) {
         case 'h':
-          args.opt_help = 1;
+          fcal_set_opt(&args, FCAL_OPT_HELP);
           break;
         case 'v':
-          args.opt_ver = 1;
+          fcal_set_opt(&args, FCAL_OPT_VERS);
           break;
         case 's':
-          args.opt_string = 1;
+          fcal_set_opt(&args, FCAL_OPT_STRC);
+          fcal_unset_opt(&args, FCAL_OPT_STRO);
           break;
         case 'S':
-          args.opt_string = 2;
+          fcal_set_opt(&args, FCAL_OPT_STRO);
+          fcal_unset_opt(&args, FCAL_OPT_STRC);
           break;
         case 'w':
-          args.opt_week_numbers = 1;
+          fcal_set_opt(&args, FCAL_OPT_WEEK);
           break;
         case 'y':
-          args.opt_years = 1;
+          fcal_set_opt(&args, FCAL_OPT_YEAR);
           break;
         case '-':
           fcal_opts_long(&argv[o][i+1], &args);
@@ -89,10 +127,10 @@ fcal_opts(int argc, char **argv)
   }
 
   if (argc > o) {
-    args.opt_curr = 0;
+    fcal_unset_opt(&args, FCAL_OPT_CURR);
   } else {
-    args.opt_show_day = 1;
-    args.opt_curr = 1;
+    fcal_set_opt(&args, FCAL_OPT_HDAY);
+    fcal_set_opt(&args, FCAL_OPT_CURR);
 
     return args;
   }
@@ -104,15 +142,15 @@ fcal_opts(int argc, char **argv)
 
   if (argc - o >= 1) {
     args.y = atoi(argv[argc-1]);
-    if (argc - o == 1) args.opt_years = 1;
+    if (argc - o == 1) fcal_set_opt(&args, FCAL_OPT_YEAR);
   }
   if (argc - o >= 2) args.m = atoi(argv[argc-2]); else args.m = 1;
   if (argc - o == 3) {
     args.d = atoi(argv[argc-3]);
-    args.opt_show_day = 1;
+    fcal_set_opt(&args, FCAL_OPT_HDAY);
   } else {
     args.d = 1;
-    args.opt_show_day = 0;
+    fcal_unset_opt(&args, FCAL_OPT_HDAY);
   }
 
   return args;

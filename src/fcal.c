@@ -67,18 +67,18 @@ main(int argc, char **argv)
 {
   // TODO: fix 5 and 6 of supplementary days
   args_t args = fcal_opts(argc, argv);
-  if (args.opt_help) {
+  if (fcal_test_opt(&args, FCAL_OPT_HELP)) {
     print_help(argv[0]);
     return 0;
   }
 
-  if (args.opt_ver) {
+  if (fcal_test_opt(&args, FCAL_OPT_VERS)) {
     printf("%s version %s\n", argv[0], __FCAL_VERSION);
     return 0;
   }
 
   date_t d;
-  if (args.opt_curr) {
+  if (fcal_test_opt(&args, FCAL_OPT_CURR)) {
     time_t t = time(NULL);
     struct tm *tm = localtime(&t);
     long tfr = t - 1569025800L + tmoff(tm);
@@ -87,22 +87,22 @@ main(int argc, char **argv)
     d = args_a_rev(&args);
   }
 
-  if (args.opt_string == 2) {
+  if (fcal_test_opt(&args, FCAL_OPT_STRO)) {
     montrer_date(&d);
     return 0;
   }
-  if (args.opt_years) {
+  if (fcal_test_opt(&args, FCAL_OPT_YEAR)) {
     printf("\033[1m         %d\033[0m\n", d.fr_anne);
     int d_fr_moin = d.fr_moin;
     for (int i = 0; i < 13; i++) {
       d.fr_moin = i;
-      fr_cal(&d, &args, (args.opt_show_day && d_fr_moin == i));
+      fr_cal(&d, &args, (fcal_test_opt(&args, FCAL_OPT_HDAY) && d_fr_moin == i));
     }
   } else {
-    fr_cal(&d, &args, args.opt_show_day);
+    fr_cal(&d, &args, fcal_test_opt(&args, FCAL_OPT_HDAY));
   }
 
-  if (args.opt_string == 1)
+  if (fcal_test_opt(&args, FCAL_OPT_STRC))
     montrer_date(&d);
 
   return 0;

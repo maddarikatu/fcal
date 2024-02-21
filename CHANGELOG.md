@@ -25,5 +25,9 @@
 * Tested on Windows after adding [`tmoff.c`](src/tmoff.c)
 * Realised localisation in Windows is messed up. Looking into it.
 
-## 0.4.2
+## 0.5
 * Added a first iteration of long options of arguments (trying to find a more elegant solution than strcmp result).
+
+## 0.5.1
+* Re-work of the option table for arguments.
+* Cases in `fcal_long_opts` switch-statement now check that the long option is actually correct.
