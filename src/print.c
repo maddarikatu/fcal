@@ -39,7 +39,7 @@ montrer_date(date_t *d)
 	if (d->fr_moin == 12)
 		// fetes
 		printf("Aujourd'hui, nous sommes le %s %d "
-        "de les jours suplementaires, de l'anné "
+        "des sans-culottides, de l'anné "
         "%s du calendrier républicain, fête %s\n",
 				jour_decade_fr[d->fr_djour], d->fr_mjour + 1,
         d->rom, nomjour_fr[d->fr_ajour]);
@@ -57,9 +57,9 @@ void
 __fr_cal_fetes(date_t *d, args_t *args, int show_day)
 {
 	if (fcal_test_opt(args, FCAL_OPT_YEAR)) {
-		printf("\033[1m         jours supplémentaires\033[0m\n");
+		printf("\033[1m         sans-culottides\033[0m\n");
 	} else {
-		printf("\033[1m         jours supplémentaires, anné %d\033[0m\n", d->fr_anne);
+		printf("\033[1m         sans-culottides, anné %d\033[0m\n", d->fr_anne);
 	}
 	if (fcal_test_opt(args, FCAL_OPT_WEEK)) printf("        | ");
 	for (int i = 0; i < 10; i++) printf(" %s ", jour_code_fr[i]);
